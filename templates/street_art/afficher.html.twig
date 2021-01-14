@@ -33,7 +33,7 @@ img {
   <span class="badge badge-danger">{{ article.artist.title }}</span>
 </div>
 <div class="content">
-<img class ="img" src="{{ path('afficher_article' , {'id' : article.id}) }}" alt="photo article" />
+<img class ="img" src="{{ article.image }}" alt="photo article" />
 
 <p>
 {{ article.content }}
