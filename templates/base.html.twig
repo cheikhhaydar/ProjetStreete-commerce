@@ -3,9 +3,19 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}ProjetStreetArt!{% endblock %}</title>
-        <link rel="stylesheet" href="https://bootswatch.com/4/sketchy/bootstrap.min.css"
-        {% block stylesheets %}{% endblock %}
+        
+        
+        {% block stylesheets %}
+        <link rel="stylesheet" href="https://bootswatch.com/4/sketchy/bootstrap.min.css">
+        <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+        {% endblock %}
     </head>
+    <style>
+  
+
+
+}
+     </style>
     <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <a class="navbar-brand" href="#">StreetArt</a>
@@ -46,6 +56,8 @@
 </nav>
         {% block body %}{% endblock %}
      
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %}
+        <script src="{{ asset('js/script.js') }}"></script>
+        {% endblock %}
     </body>
 </html>
