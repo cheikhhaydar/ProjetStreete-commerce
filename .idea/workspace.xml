@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="05fae6c0-bf5e-4a3c-9441-f809b65dd5d8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/ProjetStreete-commerce.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ProjetStreete-commerce.iml" afterDir="false" />
-    </list>
+    <list default="true" id="05fae6c0-bf5e-4a3c-9441-f809b65dd5d8" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
   </component>
@@ -131,6 +129,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -142,6 +141,7 @@
       <option name="presentableId" value="Default" />
       <updated>1610465169333</updated>
       <workItem from="1610465171239" duration="457000" />
+      <workItem from="1610486469008" duration="655000" />
     </task>
     <task id="LOCAL-00001" summary="committest">
       <created>1610465563196</created>
@@ -166,6 +166,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="committest" />

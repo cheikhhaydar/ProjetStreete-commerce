@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello StreetArtController!{% endblock %}
+
+
+{% block body %}
+<style>
+.img {
+  width:300px;
+  height:200px;
+}
+
+.articles {
+border-radius:10px;
+box-shadow:0 4px 16px rgba(0,0.0,.25);
+padding:10px;
+width:30%;
+margin:0 auto;
+}
+img {
+    border-radius:5px;
+    box-shadow:0 4px 10px rgba(0,0.0,.25);
+    margin :5px 10px 5px 10px;
+}
+
+</style>
+{% for article in articles %}
+<section class="articles mt-5">
+<article class="mb-5">
+<h2>{{article.title}}</h2>
+<div class="metadata">
+  publié le {{article.createdAt | date('d-m-Y')}} à {{article.createdAt | date('H:i')}}
+  <span class="badge badge-danger">{{ article.artist.title }}</span>
+</div>
+<div class="content">
+<img class ="img" src="{{ article.image }}" alt="photo article" />
+
+<p>
+{{ article.content }}
+ </p>
+ <a class="btn btn-danger" href="{{ path('afficher_article' , {'id' : article.id}) }}">lire la suite</a>  
+</div>
+</article>
+
+
+</section>
+{% endfor %}
+{% endblock %}
