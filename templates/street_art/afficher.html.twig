@@ -1,21 +1,29 @@
 {% extends 'base.html.twig' %}
-
+{% form_theme commentform 'bootstrap_4_layout.html.twig' %}
 {% block title %}Article entier! {% endblock %}
 
 {% block body %}
 
 <style>
-.img {
-  width:300px;
-  height:200px;
+#comments {
+  margin-left:50px;
 }
+body {
+  margin-bottom:5%;
+}
+ .img {
+  width:23%;
+  height:50vh;
+} 
 
 .articles {
 border-radius:10px;
 box-shadow:0 4px 16px rgba(0,0.0,.25);
 padding:10px;
-width:30%;
+width:90%;
+
 margin:0 auto;
+
 }
 img {
     border-radius:5px;
@@ -31,6 +39,7 @@ img {
 <div class="metadata">
   publié le {{article.createdAt | date('d-m-Y')}} à {{article.createdAt | date('H:i')}}
   <span class="badge badge-danger">{{ article.artist.title }}</span>
+ <span class="badge badge-info">{{ article.comments | length }} Commentaires</span>
 </div>
 <div class="content">
 <img class ="img" src="{{ article.image }}" alt="photo article" />
@@ -44,5 +53,27 @@ img {
 
 
 </section>
+<h1>Avis Clients!</h1>
+<section id="comments">
+ {% for comment in article.comments %}
+ <div class="comment">
+   <div class="row">
+    <div class="md-col-3" style="color:red;">
+     (<small>{{ comment.createdAt | date('d-m-Y')}} à {{ comment.createdAt | date('H:i')}}</small>) {{ comment.auteur }}
+       
+   </div>
+ 
+ </div> 
+  <p>{{ comment.content }}</p>
+</div>
+ {% endfor %}
+ </section>
+ <hr>
 
+ <section>
+   <h2>Ajouter un Commentaire! </h2>
+   {{ form_start(commentform) }}
+   {{ form_widget(commentform) }}
+      <button class="btn btn-danger">Publier</button>
+   {{ form_end(commentform) }}
 {% endblock %}

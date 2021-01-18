@@ -3,13 +3,16 @@
 namespace App\Controller;
 use \DateTime;
 use App\Entity\Article;
+use App\Entity\Comment;
 use App\Form\ArticleType;
-use App\Repository\ArticleRepository;
+use App\Form\CommentsType;
 use PhpParser\Node\Expr\FuncCall;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\ArticleRepository;
+use ProxyManager\Generator\Util\ProxiedMethodReturnExpression;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class StreetArtController extends AbstractController
 {
@@ -50,12 +53,28 @@ class StreetArtController extends AbstractController
     }
 
     /**
-     * @Route("article/{id}" , name="afficher_article")
+     * @Route("article/{id}" , name="afficher_article" , methods={"GET", "POST"})
      */
-    public function show(Article $article)
-     {
-        return $this->render('street_art/afficher.html.twig' , [
-        'article' => $article  
+    public function show(Article $article ,Request $request)
+         {
+         $comment = new Comment();
+         $form = $this->createForm(CommentsType::class, $comment);
+         $form->handleRequest($request);
+         if($form->isSubmitted() && $form->isValid()) {
+             $comment->setCreatedAt(new DateTime());
+             $comment->setArticle($article);
+             $entityManager = $this->getDoctrine()->getManager();
+             $entityManager->persist($comment);
+             $entityManager->flush();
+
+             return $this->redirectToRoute("afficher_article" , ['id'=> $article->getId()]);
+
+         }
+         return $this->render('street_art/afficher.html.twig' , [
+            
+        'article' => $article,
+        'commentform' => $form,
+        'commentform' =>$form->createView()
         ]);
         
         
