@@ -16,6 +16,7 @@ class ArticleType extends AbstractType
         $builder
             ->add('title')
             ->add('content')
+            ->add('prix')
             // ->add('image')
             ->add('artist' , EntityType::class,[
                'class' => Artist::class,

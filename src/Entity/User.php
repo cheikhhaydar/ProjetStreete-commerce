@@ -5,9 +5,11 @@ namespace App\Entity;
 use App\Repository\UserRepository;
 use DateTime;
 use DateTimeInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
+
 
 
 /**
@@ -33,15 +35,26 @@ class User implements UserInterface
      * @ORM\Column(type="json")
      */
     private $roles = [];
-
+ 
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
+      * @Assert\Length(
+     * min =6,
+     * max =30,
+     * minMessage = "Le Mot De Passe Doit Contenir Au moins 6 Caractères!",
+     * maxMessage = "le mot de passe et très long!"
+     * )
      */
     private $password;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     * min =2,
+     * max =100,
+     * minMessage = "Votre Nom Doit faire Au moins 2 Caractères!",
+     * )
      */
     private $firstname;
 

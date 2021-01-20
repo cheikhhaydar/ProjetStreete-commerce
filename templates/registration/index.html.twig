@@ -1,8 +1,15 @@
 {% extends 'base.html.twig' %}
 {% form_theme registrationform 'bootstrap_4_layout.html.twig' %}
-{% block title %} Création compte{% endblock %}
+{% block title %} Inscription! {% endblock %}
 
 {% block body %}
+<style>
+form {
+    margin:0 auto;
+    max-width:30%;
+}
+
+</style>
 
 {{ form_start(registrationform) }}
 {{form_widget(registrationform)}}

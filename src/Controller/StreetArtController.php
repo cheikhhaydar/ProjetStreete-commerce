@@ -8,6 +8,7 @@ use App\Form\ArticleType;
 use App\Form\CommentsType;
 use PhpParser\Node\Expr\FuncCall;
 use App\Repository\ArticleRepository;
+use MercurySeries\FlashyBundle\FlashyNotifier;
 use ProxyManager\Generator\Util\ProxiedMethodReturnExpression;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,10 +20,11 @@ class StreetArtController extends AbstractController
     /**
      * @Route("/", name="street_art")
      */
-    public function index(ArticleRepository $articleRepository): Response
+    public function index(ArticleRepository $articleRepository ): Response
     { 
         $articles = $articleRepository->findAll();
         
+
         return $this->render('street_art/index.html.twig', [
             'articles' => $articles
             
@@ -36,8 +38,9 @@ class StreetArtController extends AbstractController
         $article = new article();
          $form = $this->createForm(ArticleType::class, $article);
          $form->handleRequest($request);
-
-         if($form->isSubmitted() && $form->isValid()) {
+    
+         if($form->isSubmitted() && $form->isValid() ) {
+             
             $article->setCreatedAt(new DateTime());
             $article->setImage("https://img-3.journaldesfemmes.fr/OWLlp2tBpSg3moCG8zggEzJWsfA=/1240x/smart/b4fabf44fc2a4ca7bfda35ac05e52b4f/ccmcms-jdf/11089464.jpg");
             $entityManager= $this->getDoctrine()->getManager();
@@ -55,9 +58,10 @@ class StreetArtController extends AbstractController
     /**
      * @Route("article/{id}" , name="afficher_article" , methods={"GET", "POST"})
      */
-    public function show(Article $article ,Request $request)
+    public function show(Article $article ,Request $request, FlashyNotifier $flashy)
          {
          $comment = new Comment();
+         $this->flashy = $flashy;
          $form = $this->createForm(CommentsType::class, $comment);
          $form->handleRequest($request);
          if($form->isSubmitted() && $form->isValid()) {
@@ -66,6 +70,8 @@ class StreetArtController extends AbstractController
              $entityManager = $this->getDoctrine()->getManager();
              $entityManager->persist($comment);
              $entityManager->flush();
+
+             $flashy->success('commentaire publié!');
 
              return $this->redirectToRoute("afficher_article" , ['id'=> $article->getId()]);
 

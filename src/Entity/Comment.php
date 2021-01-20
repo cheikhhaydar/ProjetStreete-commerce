@@ -4,6 +4,10 @@ namespace App\Entity;
 
 use App\Repository\CommentRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity(repositoryClass=CommentRepository::class)
@@ -19,6 +23,12 @@ class Comment
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     * min =3,
+     * max =30,
+     * minMessage = "Votre Nom Doit Contenir Au Moins 3 Caractères",
+     * maxMessage = "Votre Nom Ne Doit Pas Dépasser 30 Caractères"
+     * )
      */
     private $auteur;
 

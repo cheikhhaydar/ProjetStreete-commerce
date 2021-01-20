@@ -27,20 +27,27 @@ img {
 
 </style>
 {% for article in articles %}
+
 <section class="articles mt-5">
 <article class="mb-5">
+
 <h2>{{article.title}}</h2>
+<a href=" {{ path('cart_add', {'id' : article.id}) }}" class="btn btn-danger float-right">
+ <i class="fas fa-shopping-cart mr-1"></i>
+ Ajouter</a>
+
 <div class="metadata">
   publié le {{article.createdAt | date('d-m-Y')}} à {{article.createdAt | date('H:i')}}
   <span class="badge badge-danger">{{ article.artist.title }}</span>
 </div>
 <div class="content">
-<img class ="img" src="{{ article.image }}" alt="photo article" />
+<img class ="img" src="{{ asset(article.image) }}" alt="photo article" />
 
 <p>
 {{ article.content }}
  </p>
- <a class="btn btn-danger" href="{{ path('afficher_article' , {'id' : article.id}) }}">lire la suite</a>  
+ <span class="badge badge-danger float-left">{{ article.prix }}€</span>
+ <a class="btn btn-danger float-right" href="{{ path('afficher_article' , {'id' : article.id}) }}">lire la suite</a>  
 </div>
 
 </article>

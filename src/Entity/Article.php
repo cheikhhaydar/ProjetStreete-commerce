@@ -28,10 +28,11 @@ class Article
 
     /**
      * @ORM\Column(type="string", length=255)
-     * Assert/length(
-     * min = 10,
-     * max = 100,
-     * minMessage = 'le titre doit contenir au moins 10 caractères!'
+     * @Assert\Length(
+     * min =10,
+     * max =100,
+     * minMessage = "Le Titre Doit Contenir Au Moins 10 Caractères",
+     * maxMessage = "Le Titre Ne Doit Pas Dépasser 100 Caractères"
      * )
      */
     private $title;
@@ -60,6 +61,11 @@ class Article
      * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="article")
      */
     private $comments;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $prix;
 
     public function __construct()
     {
@@ -157,6 +163,18 @@ class Article
                 $comment->setArticle(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPrix(): ?int
+    {
+        return $this->prix;
+    }
+
+    public function setPrix(int $prix): self
+    {
+        $this->prix = $prix;
 
         return $this;
     }
