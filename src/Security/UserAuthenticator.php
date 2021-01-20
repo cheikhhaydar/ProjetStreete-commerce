@@ -98,7 +98,7 @@ class UserAuthenticator extends AbstractFormLoginAuthenticator implements Passwo
         if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
             return new RedirectResponse($targetPath);
         }
-        $this->flashyNotifier->success('Vous êtes connecter!');
+        $this->flashyNotifier->success('Vous êtes connecter en tant que!');
         return new RedirectResponse($this->urlGenerator->generate('street_art'));
      
     }

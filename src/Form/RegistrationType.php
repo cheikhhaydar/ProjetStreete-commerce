@@ -20,13 +20,24 @@ class RegistrationType extends AbstractType
     {
          $builder
          ->add('firstName', TextType::class , [
-          'label' => "Prénom"
+          'label' => "Prénom",
+          'attr' => [
+            'placeholder'=> 'Ex: Jean'
+        ]
+          
          ])
          ->add('lastName', TextType::class , [
-            'label' => "Nom"
+            'label' => "Nom",
+            'attr' => [
+                'placeholder'=> 'Ex: Schmitt '
+            ]
          ])
         ->add('email', EmailType::class , [
-            'label' => 'Entrez Votre E-mail :'
+            'label' => 'Entrez Votre E-mail :',
+            'attr' => [
+                'placeholder'=> 'Votreemail@gmail.com'
+            ]
+           
         ])
         
         ->add('Password', RepeatedType::class , [

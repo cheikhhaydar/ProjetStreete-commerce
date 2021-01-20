@@ -49,8 +49,8 @@ class CartController extends AbstractController
 
         $panier = $session->get('panier' , []);
         if(!empty($panier[$id])) {
-            $panier[$id]++;
-
+           $panier[$id]++;
+ 
         }else {
              $panier[$id] = 1;
         }
