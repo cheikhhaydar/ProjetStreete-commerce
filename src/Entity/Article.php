@@ -7,7 +7,10 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ArticleRepository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
+
 
 
 
@@ -16,6 +19,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ArticleRepository::class)
+ * @Vich\Uploadable
  */
 class Article
 {
@@ -42,10 +46,7 @@ class Article
      */
     private $content;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $image;
+
 
     /**
      * @ORM\Column(type="datetime")
@@ -102,18 +103,6 @@ class Article
         return $this;
     }
 
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
-
-    public function setImage(string $image): self
-    {
-        $this->image = $image;
-
-        return $this;
-    }
- 
     public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->createdAt;
@@ -125,6 +114,7 @@ class Article
 
         return $this;
     }
+
 
     public function getArtist(): ?artist
     {
@@ -179,4 +169,47 @@ class Article
 
         return $this;
     }
+
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @var string
+     */
+    private $image;
+
+    /**
+     * @Vich\UploadableField(mapping="articles", fileNameProperty="image")
+     * @var File
+     */
+    private $imageFile;
+
+  
+
+    
+    public function setImageFile(File $image = null)
+    {
+        $this->imageFile = $image;
+
+      
+        if ($image) {
+         
+            $this->createdAt = new \DateTime('now');
+        }
+    }
+
+    public function getImageFile()
+    {
+        return $this->imageFile;
+    }
+
+    public function setImage($image)
+    {
+        $this->image = $image;
+    }
+
+    public function getImage()
+    {
+        return $this->image;
+    }
+
 }
