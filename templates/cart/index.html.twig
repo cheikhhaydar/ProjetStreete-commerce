@@ -3,6 +3,17 @@
 {% block title %}Hello CartController!{% endblock %}
 
 {% block body %}
+<style>
+.table {
+margin-top:10%;
+margin-bottom:15%;
+}
+.alert {
+    margin-top: 70px;
+    margin-bottom: 15rem;
+    text-align: center;
+}
+</style>
 <div class="bg-light p-3">
     <h1>Panier</h1>
 </div>
@@ -47,6 +58,9 @@
  </tbody>
        
 {% else %}
-  <p>Votre Panier Est Vide!</p>
+  <div class="alert alert-dismissible alert-danger">
+  <span class="alert-link">Votre Panier Est Vide!</span>
+</div>
 {% endif %}
 {% endblock %}
+

@@ -51,6 +51,7 @@ class Article
      * @ORM\Column(type="datetime")
      */
     private $createdAt;
+    
 
     /**
      * @ORM\ManyToOne(targetEntity=Artist::class, inversedBy="articles")

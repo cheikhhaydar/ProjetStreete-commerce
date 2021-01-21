@@ -5,8 +5,13 @@
 {% block body %}
 <style>
 form {
+    
     margin:0 auto;
     max-width:30%;
+}
+#registration {
+    margin-top:50px;
+    margin-bottom:20px;
 }
 
 </style>
@@ -14,7 +19,9 @@ form {
 {{ form_start(registrationform) }}
 {{form_widget(registrationform)}}
 
-<button class="btn btn-danger">Créer mon compte!</button>
+<button class="btn btn-danger" style="
+    margin-bottom: 40px;"
+>Créer mon compte!</button>
 {{form_end(registrationform)}}
 
 
