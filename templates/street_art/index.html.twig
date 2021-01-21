@@ -41,7 +41,10 @@ img {
   <span class="badge badge-danger">{{ article.artist.title }}</span>
 </div>
 <div class="content">
-<img class ="img" src="{{ asset(article.image) }}" alt="photo article" />
+<img class ="img" src="{{ vich_uploader_asset( article ,'imageFile') }}" alt="photo article" />
+
+
+
 
 <p>
 {{ article.content }}
