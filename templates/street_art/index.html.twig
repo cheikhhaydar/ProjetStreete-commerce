@@ -38,7 +38,7 @@ img {
 
 <div class="metadata">
   publié le {{article.createdAt | date('d-m-Y')}} à {{article.createdAt | date('H:i')}}
-  <span class="badge badge-danger">{{ article.artist.title }}</span>
+  {# <span class="badge badge-danger">{{ article.artist.title }}</span> #}
 </div>
 <div class="content">
 <img class ="img" src="{{ vich_uploader_asset( article ,'imageFile') }}" alt="photo article" />

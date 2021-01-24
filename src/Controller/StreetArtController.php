@@ -2,17 +2,20 @@
 
 namespace App\Controller;
 use \DateTime;
+use App\Entity\User;
 use App\Entity\Article;
 use App\Entity\Comment;
 use App\Form\ArticleType;
 use App\Form\CommentsType;
 use PhpParser\Node\Expr\FuncCall;
 use App\Repository\ArticleRepository;
-use MercurySeries\FlashyBundle\FlashyNotifier;
-use ProxyManager\Generator\Util\ProxiedMethodReturnExpression;
 use Symfony\Component\HttpFoundation\Request;
+use MercurySeries\FlashyBundle\FlashyNotifier;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use ProxyManager\Generator\Util\ProxiedMethodReturnExpression;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class StreetArtController extends AbstractController
@@ -85,5 +88,21 @@ class StreetArtController extends AbstractController
         
         
     }
-   
+     /**
+     * @Route("/supprimer/{id}" , name="supprimer_comment")
+     * @return Response
+     */
+    public Function Supprimer(Comment $comment) 
+     { 
+    
+
+      $entityManager= $this->getDoctrine()->getManager();
+      $entityManager->remove($comment);
+      $entityManager->flush();
+
+
+         return new Response('comment supprimé!');
+
+     }
+ 
 }

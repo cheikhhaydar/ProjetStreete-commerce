@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Modifier les Informations {% endblock %}
+
+{% block body %}
+
+<h1>Modifier vos Informations</h1>
+{{form_start(editForm)}}
+{{form_widget(editForm)}}
+
+<button class="btn btn-danger">Valider</button>
+
+{{form_end(editForm)}}
+{% endblock %}

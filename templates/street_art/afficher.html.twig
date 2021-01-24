@@ -46,7 +46,9 @@ img {
 
 <p>
 {{ article.content }}
+ <p class="badge badge-danger">{{  article.Prix }} €</p>
  </p>
+
 
 </div>
 </article>
@@ -60,7 +62,12 @@ img {
    <div class="row">
     <div class="md-col-3" style="color:red;">
      (<small>{{ comment.createdAt | date('d-m-Y')}} à {{ comment.createdAt | date('H:i')}}</small>) {{ comment.auteur }}
-       
+    
+            {% if is_granted('ROLE_ADMIN') %}   
+            <a href="{{ path('supprimer_comment' , {'id' : comment.id}) }}" class="btn btn-danger">
+                  <i class="fas fa-trash"></i>
+                 </a>
+  {% endif %}
    </div>
  
  </div> 

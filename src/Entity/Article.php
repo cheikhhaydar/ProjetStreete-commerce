@@ -5,6 +5,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ArticleRepository;
+use DateTime;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\HttpFoundation\File\File;
@@ -70,7 +71,8 @@ class Article
     private $prix;
 
     public function __construct()
-    {
+    { 
+         $this->createdAt = new DateTime();
         $this->comments = new ArrayCollection();
     }
 

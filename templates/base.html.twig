@@ -201,6 +201,14 @@ footer {
   color: #fff;
  
 }
+
+.nav-link:hover {
+color:#c22938;
+}
+
+li:hover {
+color:#c22938;
+}
      </style>
      
 
@@ -217,13 +225,18 @@ footer {
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
 
-        <a class="nav-link" href="{{ path('street_art') }}">Accueil
-          <span class="sr-only">(current)</span>
-        </a>
+        <a class="nav-link" href="{{ path('street_art') }}">Accueil</a>
+          
+        
+            {% if is_granted('ROLE_ADMIN') %}
+             <li class="nav-item"> <a class="nav-link" href=" {{ path('nouveau_aticle') }} ">Ajouter un article</a></li>
+              
+            {% endif %}
 
+    {% if is_granted('ROLE_USER') %}
         <li class="nav-item"> <a class="nav-link" href=" {{ path('mon_espace') }} ">Mon Espace</a></li>
 
-         
+         {% endif %}
       </li>
     
    

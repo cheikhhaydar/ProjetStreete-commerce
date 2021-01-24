@@ -14,6 +14,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoder;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\Validator\Constraints\UserPassword;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Validator\Constraints\Url;
 
 class RegistrationController extends AbstractController
 {
@@ -68,6 +69,5 @@ class RegistrationController extends AbstractController
             'registrationform' => $form->createView()
         ]);
     }
-
-
-}
+ 
+} 
